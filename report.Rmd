@@ -68,3 +68,11 @@ testRaw <- testRaw[, !testRemove]
 testCleaned <- testRaw[, sapply(testRaw, is.numeric)]
 ```
 Now, the cleaned training data set contains **19622** observations and **53** variables, while the testing data set contains **20 observations** and **53 variables**. The "classe" variable is still in the cleaned training set.
+### Slicing the data
+Then, we can split the cleaned training set into a pure training data set (70%) and a validation data set (30%). We will use the validation data set to conduct cross validation in future steps.  
+```{r, cache = T}
+set.seed(22519) # For reproducibile purpose.
+inTrain <- createDataPartition(trainCleaned$classe, p=0.70, list=F)
+trainData <- trainCleaned[inTrain, ]
+testData <- trainCleaned[-inTrain, ]
+```
