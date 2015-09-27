@@ -1,0 +1,6 @@
+---
+title: "Practical Machine Learning: Prediction Assignment"
+author: "by Prabhat Kumar"
+date: "28 September 2015"
+output: html_document
+---
