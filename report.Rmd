@@ -37,3 +37,12 @@ if (!file.exists(testFile)) {
   download.file(testUrl, destfile=testFile, method="curl")
 }
 ```
+### Reading the Data
+After downloading the data from the data source, we can read the two csv files into two data frames.
+```{r, cache = T}
+trainRaw <- read.csv("./data/pml-training.csv")
+testRaw <- read.csv("./data/pml-testing.csv")
+dim(trainRaw)
+dim(testRaw)
+```
+The training data set contains **19622** observations and **160** variables, while the testing data set contains 20 observations and 160 variables. The "classe" variable in the training set is the outcome to predict.
