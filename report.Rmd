@@ -46,3 +46,25 @@ dim(trainRaw)
 dim(testRaw)
 ```
 The training data set contains **19622** observations and **160** variables, while the testing data set contains 20 observations and 160 variables. The "classe" variable in the training set is the outcome to predict.
+### Cleaning the data
+In this step, we will clean the data and get rid of observations with missing values as well as some meaningless variables.
+```{r, cache = T}
+sum(complete.cases(trainRaw))
+```
+First, we remove columns that contain NA missing values.
+```{r, cache = T}
+trainRaw <- trainRaw[, colSums(is.na(trainRaw)) == 0] 
+testRaw <- testRaw[, colSums(is.na(testRaw)) == 0] 
+```  
+Next, we get rid of some columns that do not contribute much to the accelerometer measurements.
+```{r, cache = T}
+classe <- trainRaw$classe
+trainRemove <- grepl("^X|timestamp|window", names(trainRaw))
+trainRaw <- trainRaw[, !trainRemove]
+trainCleaned <- trainRaw[, sapply(trainRaw, is.numeric)]
+trainCleaned$classe <- classe
+testRemove <- grepl("^X|timestamp|window", names(testRaw))
+testRaw <- testRaw[, !testRemove]
+testCleaned <- testRaw[, sapply(testRaw, is.numeric)]
+```
+Now, the cleaned training data set contains **19622** observations and **53** variables, while the testing data set contains **20 observations** and **53 variables**. The "classe" variable is still in the cleaned training set.
