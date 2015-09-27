@@ -4,3 +4,5 @@ author: "by Prabhat Kumar"
 date: "28 September 2015"
 output: html_document
 ---
+
+# Practical Machine Learning: Prediction Assignment Writeup
